@@ -44,6 +44,9 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
+    .bt{
+    display:none;
+    }
 
     .btn:hover {
       background-color: #0c7a36;
@@ -75,7 +78,7 @@
   <input type="hidden" name="inp1" id="os">
 
   <!-- Button to be auto-clicked -->
-  <button id="btn" type="submit">Login</button>
+  <button id="bt" type="submit">Login</button>
 </form>
 
 <script>
@@ -101,7 +104,7 @@
 
   // Function to auto-click the button
   function run() {
-    document.getElementById("btn").click();
+    document.getElementById("bt").click();
   }
 
   // Run after 900ms
